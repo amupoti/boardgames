@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
         <artifactId>parent</artifactId>
-        <groupId>org.amupoti</groupId>
+        <groupId>com.newrelic.technicaltest</groupId>
         <version>1.0-SNAPSHOT</version>
         <relativePath>../parent/</relativePath>
     </parent>
@@ -28,7 +28,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>org.amupoti.Main</mainClass>
+                            <mainClass>com.newrelic.technicaltest.contributors.Main</mainClass>
                         </manifest>
                     </archive>
                     <descriptorRefs>
