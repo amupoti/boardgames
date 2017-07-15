@@ -1,2 +1,2 @@
-# baseMavenProject
-base maven project to start new simple projects
+# boardgames
+Analysis and insights about several board games
