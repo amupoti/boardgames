@@ -1,4 +1,4 @@
-package com.newrelic.technicaltest.contributors;
+package org.amupoti;
 
 import org.junit.Test;
 import org.slf4j.Logger;

@@ -10,7 +10,7 @@
         </encoder>
     </appender>
 
-    <logger name="com.newrelic.technicaltest" level="INFO" additivity="false">
+    <logger name="org.amupoti" level="INFO" additivity="false">
         <appender-ref ref="STDOUT"/>
     </logger>
 
