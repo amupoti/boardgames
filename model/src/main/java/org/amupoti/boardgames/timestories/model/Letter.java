@@ -1,8 +1,8 @@
 package org.amupoti.boardgames.timestories.model;
 
 /**
- * Created by Marcel on 15/07/2017.
+ * Created by amupoti on 15/07/2017.
  */
 public enum Letter {
-    A, B, C, D, E, F, G
+    A, B, C, D, E, F, G, NO_LETTER
 }

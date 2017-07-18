@@ -1,4 +1,4 @@
-package org.amupoti.boardgames.timestories.model;
+package org.amupoti.boardgames.timestories.model.location;
 
 import lombok.Builder;
 import lombok.Getter;
@@ -6,7 +6,7 @@ import lombok.Getter;
 import java.util.List;
 
 /**
- * Created by Marcel on 15/07/2017.
+ * Created by amupoti on 15/07/2017.
  */
 @Getter
 @Builder
