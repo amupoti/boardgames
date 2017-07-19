@@ -1,10 +1,9 @@
 package org.amupoti.boardgames.timestories.marcycase;
 
+import org.amupoti.boardgames.timestories.marcycase.graph.GraphHelper;
 import org.amupoti.boardgames.timestories.marcycase.location.LocationBuilder;
 import org.amupoti.boardgames.timestories.model.location.Location;
-import org.graphstream.graph.Graph;
 import org.graphstream.graph.Node;
-import org.graphstream.graph.implementations.SingleGraph;
 import org.graphstream.ui.view.Viewer;
 
 import java.util.List;
@@ -17,24 +16,25 @@ public class TheMarcyCaseApp {
     public static void main(String[] args) {
 
 
-        Graph graph = new SingleGraph("The Marcy Case");
+        GraphHelper g = new GraphHelper("The Marcy Case");
 
         LocationBuilder lb = new LocationBuilder();
         List<Location> locations = lb.buildLocation1();
+
         locations.stream().forEach(
-                l -> {
-                    Node root = graph.addNode(l.getName());
-                    root.setAttribute("ui.label", l.getName());
-                    root.setAttribute("layout.weight", 100);
-                    l.getLocationCardList().forEach(
-                            c -> {
-                                Node n = graph.addNode(c.getLetter().name());
-                                n.setAttribute("ui.label", c.getLetter().name());
-                                graph.addEdge(l.getName() + c.getLetter().name(), l.getName(), c.getLetter().name());
+                loc -> {
+                    g.addLocation(loc);
+                    loc.getLocationCardList().forEach(
+                            card -> {
+                                Node n = g.addLocationCard(card);
+                                if (card.getAction().containsFight())
+                                    g.markNodeAsFight(n);
+                                g.addEdge(loc, card);
                             });
                 });
 
-        Viewer display = graph.display();
+        Viewer display = g.display();
+
 
     }
 
