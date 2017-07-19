@@ -19,7 +19,7 @@ public class TheMarcyCaseApp {
         GraphHelper g = new GraphHelper("The Marcy Case");
 
         LocationBuilder lb = new LocationBuilder();
-        List<Location> locations = lb.buildLocation1();
+        List<Location> locations = lb.buildLocations();
 
         locations.stream().forEach(
                 loc -> {

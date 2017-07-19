@@ -16,6 +16,7 @@ import org.amupoti.boardgames.timestories.model.action.Action;
 @Builder
 public class LocationCard implements Card {
 
+    private int locationNumber;
     private int number;
     @Builder.Default
     private Letter letter = Letter.NO_LETTER;
@@ -25,4 +26,7 @@ public class LocationCard implements Card {
     private Action action = Action.EMPTY;
 
 
+    public String getUniqueId() {
+        return getLocationNumber() + getLetter().name();
+    }
 }

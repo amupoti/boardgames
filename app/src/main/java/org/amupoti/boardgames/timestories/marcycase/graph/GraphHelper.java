@@ -31,15 +31,15 @@ public class GraphHelper extends SingleGraph {
 
 
     public Node addLocation(Location l) {
-        return addNodeWithLabel(l.getName());
+        return addNodeWithLabel("" + l.getNumber(), l.getName());
     }
 
     public Node addLocationCard(LocationCard c) {
-        return addNodeWithLabel(c.getLetter().name());
+        return addNodeWithLabel(c.getUniqueId(), c.getLetter().name());
     }
 
-    private Node addNodeWithLabel(String name) {
-        Node node = addNode(name);
+    private Node addNodeWithLabel(String id, String name) {
+        Node node = addNode(id);
         node.setAttribute("ui.label", name);
         return node;
     }
@@ -49,8 +49,9 @@ public class GraphHelper extends SingleGraph {
     }
 
     public void addEdge(Location l, LocationCard c) {
-        String name = c.getLetter().name();
-        addEdge(l.getName() + name, l.getName(), name);
+        String locId = l.getUniqueId();
+        String cardId = c.getUniqueId();
+        addEdge(locId + cardId, locId, cardId);
     }
 
 }

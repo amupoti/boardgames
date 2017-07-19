@@ -14,7 +14,7 @@ public class LocationBuilderTest {
     @Test
     public void buildLocations() throws Exception {
         LocationBuilder lb = new LocationBuilder();
-        List<Location> locations = lb.buildLocation1();
+        List<Location> locations = lb.buildLocations();
         Assert.assertTrue(locations.size() > 0);
     }
 

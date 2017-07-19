@@ -15,4 +15,8 @@ public class Location {
     private int number;
     private String name;
     private List<LocationCard> locationCardList;
+
+    public String getUniqueId() {
+        return "" + number;
+    }
 }
