@@ -1,12 +1,13 @@
 package org.amupoti.boardgames.timestories.model;
 
-import lombok.AllArgsConstructor;
+import lombok.Builder;
 
 /**
  * Created by amupoti on 17/07/2017.
  */
-@AllArgsConstructor
+@Builder
 public class Precondition {
 
-    private final AccessCondition accessCondition;
+    private AccessCondition accessCondition;
+    private TokenRequiredCondition tokenRequiredCondition;
 }

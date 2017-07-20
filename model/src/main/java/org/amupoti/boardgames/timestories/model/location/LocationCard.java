@@ -21,7 +21,7 @@ public class LocationCard implements Card {
     @Builder.Default
     private Letter letter = Letter.NO_LETTER;
     @Builder.Default
-    private Precondition precondition = new Precondition(AccessCondition.NONE);
+    private Precondition precondition = Precondition.builder().accessCondition(AccessCondition.NONE).build();
     @Builder.Default
     private Action action = Action.EMPTY;
 

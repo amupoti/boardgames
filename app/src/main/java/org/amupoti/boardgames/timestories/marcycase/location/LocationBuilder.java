@@ -1,17 +1,19 @@
 package org.amupoti.boardgames.timestories.marcycase.location;
 
 import org.amupoti.boardgames.timestories.model.Precondition;
+import org.amupoti.boardgames.timestories.model.TokenRequiredCondition;
 import org.amupoti.boardgames.timestories.model.action.Action;
 import org.amupoti.boardgames.timestories.model.action.EscapeCondition;
 import org.amupoti.boardgames.timestories.model.action.subaction.*;
 import org.amupoti.boardgames.timestories.model.location.Location;
 import org.amupoti.boardgames.timestories.model.location.LocationCard;
+import org.amupoti.boardgames.timestories.model.token.TokenColor;
+import org.amupoti.boardgames.timestories.model.token.TokenType;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static org.amupoti.boardgames.timestories.model.AccessCondition.FIRST_MOVE_REQUIRED;
-import static org.amupoti.boardgames.timestories.model.AccessCondition.TOKEN_REQUIRED;
 import static org.amupoti.boardgames.timestories.model.Letter.*;
 import static org.amupoti.boardgames.timestories.model.token.TokenColor.*;
 import static org.amupoti.boardgames.timestories.model.token.TokenType.ONE;
@@ -93,8 +95,9 @@ public class LocationBuilder {
                 .number(72)
                 .locationNumber(locNumber)
                 .letter(F)
-                //TODO: we need to indicate that we need the token black one token
-                .precondition(new Precondition(TOKEN_REQUIRED))
+                .precondition(Precondition.builder()
+                        .tokenRequiredCondition(new TokenRequiredCondition(TokenColor.BLACK, TokenType.ONE))
+                        .build())
                 .action(Action.builder()
                         .subAction(new Fight())
                         .build())
@@ -105,8 +108,9 @@ public class LocationBuilder {
                 .number(73)
                 .locationNumber(locNumber)
                 .letter(G)
-                //TODO: we need to indicate that we need the token blue two
-                .precondition(new Precondition(TOKEN_REQUIRED))
+                .precondition(Precondition.builder()
+                        .tokenRequiredCondition(new TokenRequiredCondition(TokenColor.BLUE, TokenType.TWO))
+                        .build())
                 .action(Action.builder()
                         .subAction(TakeItem.builder()
                                 .itemNumber(4)
@@ -135,7 +139,9 @@ public class LocationBuilder {
                 .number(61)
                 .locationNumber(locNumber)
                 .letter(B)
-                .precondition(new Precondition(FIRST_MOVE_REQUIRED))
+                .precondition(Precondition.builder()
+                        .accessCondition(FIRST_MOVE_REQUIRED)
+                        .build())
                 .action(Action.builder()
                         .canEscape(EscapeCondition.CANNOT_ESCAPE)
                         .subAction(new Fight())
@@ -174,7 +180,9 @@ public class LocationBuilder {
                 .number(64)
                 .locationNumber(locNumber)
                 .letter(E)
-                .precondition(new Precondition(FIRST_MOVE_REQUIRED))
+                .precondition(Precondition.builder()
+                        .accessCondition(FIRST_MOVE_REQUIRED)
+                        .build())
                 .action(Action.builder()
                         .subAction(new Fight())
                         .subAction(TakeToken.builder()
