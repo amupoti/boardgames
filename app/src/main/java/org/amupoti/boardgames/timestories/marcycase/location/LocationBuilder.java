@@ -47,8 +47,11 @@ public class LocationBuilder {
                 .locationNumber(locNumber)
                 .letter(B)
                 .action(Action.builder()
-                        //TODO there is a condition to get the token (3 green tokens). Add logic to model this
-                        .subAction(new TakeToken(BLACK, ONE))
+                        //TODO there is a condition to get the token (3 green tokens). Add logic to model this?
+                        .subAction(TakeToken.builder()
+                                .tokenColor(BLACK)
+                                .tokenType(ONE)
+                                .build())
                         .build())
                 .build());
 
@@ -58,7 +61,7 @@ public class LocationBuilder {
                 .locationNumber(locNumber)
                 .letter(C)
                 .action(Action.EMPTY)
-                //TODO: There is some clue in the text, not sure if we should model this
+                //There is some clue in the text, not sure if we should model this
                 .build());
 
         //Card D
@@ -67,8 +70,12 @@ public class LocationBuilder {
                 .locationNumber(locNumber)
                 .letter(D)
                 .action(Action.builder()
-                        //TODO there is a condition to get the token (item 23). Add logic to model this
-                        .subAction(new TakeToken(BLUE, TWO))
+                        .subAction(TakeToken.builder()
+                                .tokenColor(BLUE)
+                                .tokenType(TWO)
+                                .actionCondition(ActionCondition.builder().itemRequired(23)
+                                        .build())
+                                .build())
                         .build())
                 .build());
 
@@ -80,7 +87,6 @@ public class LocationBuilder {
                 .action(Action.EMPTY)
                 //TODO: There is change to recover health using time units. Model this?
                 .build());
-
 
         //Card F
         cardList.add(LocationCard.builder()
@@ -102,8 +108,9 @@ public class LocationBuilder {
                 //TODO: we need to indicate that we need the token blue two
                 .precondition(new Precondition(TOKEN_REQUIRED))
                 .action(Action.builder()
-                        .subAction(new TakeItem(4)) //This is location 7, the lab
-                        //TODO: add logic so we can indicate this is a new location
+                        .subAction(TakeItem.builder()
+                                .itemNumber(4)
+                                .build())
                         .build())
                 .build());
 
@@ -142,7 +149,9 @@ public class LocationBuilder {
                 .action(Action.builder()
                         .canEscape(EscapeCondition.CANNOT_ESCAPE)
                         .subAction(new Fight())
-                        .subAction(new TakeItem(3))
+                        .subAction(TakeItem.builder()
+                                .itemNumber(3)
+                                .build())
                         .build())
                 .build());
         // Card D
@@ -152,8 +161,12 @@ public class LocationBuilder {
                 .letter(D)
                 .action(Action.builder()
                         .subAction(new RollingDiceTest())
-                        .subAction(new TakeItem(16)) //Flare
-                        .subAction(new TakeItem(27)) //Bat
+                        .subAction(TakeItem.builder()
+                                .itemNumber(16)
+                                .build()) //Flare
+                        .subAction(TakeItem.builder()
+                                .itemNumber(27)
+                                .build()) //Bat
                         .build())
                 .build());
         //Card E
@@ -164,7 +177,10 @@ public class LocationBuilder {
                 .precondition(new Precondition(FIRST_MOVE_REQUIRED))
                 .action(Action.builder()
                         .subAction(new Fight())
-                        .subAction(new TakeToken(YELLOW, TWO))
+                        .subAction(TakeToken.builder()
+                                .tokenColor(YELLOW)
+                                .tokenType(TWO)
+                                .build())
                         .build())
                 .build());
         //Card F
@@ -175,7 +191,9 @@ public class LocationBuilder {
                 .action(Action.builder()
                         //TODO: model conditions when taking objects
                         //we need Item number 3 here to get it
-                        .subAction(new TakeItem(5)) //Prisoner
+                        .subAction(TakeItem.builder()
+                                .itemNumber(5)
+                                .build()) //Prisoner
                         .build())
                 .build());
         //Card F
@@ -184,7 +202,9 @@ public class LocationBuilder {
                 .locationNumber(locNumber)
                 .letter(G)
                 .action(Action.builder()
-                        .subAction(new TakeItem(2)) //Gunshot
+                        .subAction(TakeItem.builder()
+                                .itemNumber(2)
+                                .build()) //Gunshot
                         .build())
                 .build());
 
