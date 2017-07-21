@@ -1,8 +1,8 @@
 package org.amupoti.boardgames.timestories.model;
 
 import lombok.AllArgsConstructor;
-import org.amupoti.boardgames.timestories.model.token.TokenColor;
-import org.amupoti.boardgames.timestories.model.token.TokenType;
+import org.amupoti.boardgames.timestories.model.token.SquareTokenColor;
+import org.amupoti.boardgames.timestories.model.token.SquareTokenType;
 
 /**
  * Created by amupoti on 20/07/2017.
@@ -10,6 +10,6 @@ import org.amupoti.boardgames.timestories.model.token.TokenType;
 @AllArgsConstructor
 public class TokenRequiredCondition {
 
-    private TokenColor tokenColor;
-    private TokenType tokenType;
+    private SquareTokenColor squareTokenColor;
+    private SquareTokenType squareTokenType;
 }

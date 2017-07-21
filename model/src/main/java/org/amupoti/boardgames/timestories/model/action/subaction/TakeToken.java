@@ -2,8 +2,8 @@ package org.amupoti.boardgames.timestories.model.action.subaction;
 
 import lombok.Builder;
 import lombok.Singular;
-import org.amupoti.boardgames.timestories.model.token.TokenColor;
-import org.amupoti.boardgames.timestories.model.token.TokenType;
+import org.amupoti.boardgames.timestories.model.token.SquareTokenColor;
+import org.amupoti.boardgames.timestories.model.token.SquareTokenType;
 
 import java.util.List;
 
@@ -15,6 +15,6 @@ public class TakeToken extends SubAction {
 
     @Singular
     private List<ActionCondition> actionConditions;
-    private TokenColor tokenColor;
-    private TokenType tokenType;
+    private SquareTokenColor squareTokenColor;
+    private SquareTokenType squareTokenType;
 }

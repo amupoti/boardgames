@@ -11,7 +11,7 @@ import java.util.List;
 /**
  * Created by amupoti on 17/07/2017.
  */
-public class TheMarcyCaseApp {
+public class TheMarcyCaseGraphApp {
 
     public static void main(String[] args) {
 
@@ -20,6 +20,7 @@ public class TheMarcyCaseApp {
 
         LocationBuilder lb = new LocationBuilder();
         List<Location> locations = lb.buildLocations();
+
 
         locations.stream().forEach(
                 loc -> {

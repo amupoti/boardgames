@@ -7,17 +7,17 @@ import org.amupoti.boardgames.timestories.model.action.EscapeCondition;
 import org.amupoti.boardgames.timestories.model.action.subaction.*;
 import org.amupoti.boardgames.timestories.model.location.Location;
 import org.amupoti.boardgames.timestories.model.location.LocationCard;
-import org.amupoti.boardgames.timestories.model.token.TokenColor;
-import org.amupoti.boardgames.timestories.model.token.TokenType;
+import org.amupoti.boardgames.timestories.model.token.RoundTokenColor;
+import org.amupoti.boardgames.timestories.model.token.SquareTokenColor;
+import org.amupoti.boardgames.timestories.model.token.SquareTokenType;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static org.amupoti.boardgames.timestories.model.AccessCondition.FIRST_MOVE_REQUIRED;
 import static org.amupoti.boardgames.timestories.model.Letter.*;
-import static org.amupoti.boardgames.timestories.model.token.TokenColor.*;
-import static org.amupoti.boardgames.timestories.model.token.TokenType.ONE;
-import static org.amupoti.boardgames.timestories.model.token.TokenType.TWO;
+import static org.amupoti.boardgames.timestories.model.token.SquareTokenColor.*;
+import static org.amupoti.boardgames.timestories.model.token.SquareTokenType.*;
 
 /**
  * Created by amupoti on 18/07/2017.
@@ -29,7 +29,135 @@ public class LocationBuilder {
         List<Location> locationList = new ArrayList<>();
         locationList.add(buildLocation1());
         locationList.add(buildLocation2());
+        locationList.add(buildLocation3());
         return locationList;
+    }
+
+    private Location buildLocation3() {
+
+        List<LocationCard> cardList = new ArrayList<>();
+        //Card A
+        int locNumber = 3;
+        cardList.add(LocationCard.builder()
+                .number(74)
+                .locationNumber(locNumber)
+                .letter(A)
+                .build());
+
+        //Card B
+        cardList.add(LocationCard.builder()
+                .number(75)
+                .locationNumber(locNumber)
+                .letter(B)
+                .build());
+
+        //Card C
+        cardList.add(LocationCard.builder()
+                .number(76)
+                .locationNumber(locNumber)
+                .letter(C)
+                .action(Action.builder()
+                        .subAction(TakeItem.builder()
+                                .itemNumber(25)
+                                .actionCondition(ActionCondition.builder()
+                                        .roundTokenColor(RoundTokenColor.GREEN)
+                                        .roundTokensRequired(2)
+                                        .build())
+                                .build())
+                        .build())
+                .build());
+
+        //Card D
+        cardList.add(LocationCard.builder()
+                .number(77)
+                .locationNumber(locNumber)
+                .letter(D)
+                .action(Action.builder()
+                        .subAction(TakeItem.builder()
+                                .itemNumber(17)
+                                .actionCondition(ActionCondition.builder()
+                                        .roundTokenColor(RoundTokenColor.GREEN)
+                                        .roundTokensRequired(2)
+                                        .build())
+                                .build())
+                        .build())
+                .build());
+
+        //Card E
+        cardList.add(LocationCard.builder()
+                .number(78)
+                .locationNumber(locNumber)
+                .letter(E)
+                .action(Action.builder()
+                        .subAction(TakeItem.builder()
+                                .itemNumber(7)
+                                .actionCondition(ActionCondition.builder()
+                                        .passCustomTest(true)
+                                        .build())
+                                .build())
+                        .build())
+                .build());
+
+        //Card F
+        cardList.add(LocationCard.builder()
+                .number(79)
+                .locationNumber(locNumber)
+                .letter(F)
+                .action(Action.builder()
+                        .subAction(TwoOptionSubAction.builder()
+                                .subAction(TakeToken.builder()
+                                        .squareTokenColor(GREEN)
+                                        .squareTokenType(THREE)
+                                        .actionCondition(ActionCondition.builder()
+                                                .spendTimeUnits(3)
+                                                .build())
+                                        .build())
+                                .alternateSubAction(TakeToken.builder()
+                                        .squareTokenColor(GRAY)
+                                        .squareTokenType(TWO)
+                                        .build())
+                                .build())
+                        .build())
+                .build());
+
+        //Card G
+        cardList.add(LocationCard.builder()
+                .number(80)
+                .locationNumber(locNumber)
+                .letter(G)
+                .precondition(Precondition.builder()
+                        .tokenRequiredCondition(new TokenRequiredCondition(SquareTokenColor.GREEN, SquareTokenType.THREE))
+                        .build())
+                .action(Action.builder()
+                        .subAction(TakeItem.builder()
+                                .itemNumber(18)
+                                .build())
+                        .build())
+                .build());
+
+        //Card H
+        cardList.add(LocationCard.builder()
+                .number(81)
+                .locationNumber(locNumber)
+                .letter(H)
+                .precondition(Precondition.builder()
+                        .tokenRequiredCondition(new TokenRequiredCondition(SquareTokenColor.GRAY, SquareTokenType.TWO))
+                        .build())
+                .action(Action.builder()
+                        .subAction(TakeItem.builder()
+                                .itemNumber(18)
+                                .build())
+                        .build())
+                .build());
+
+
+        //Build location
+        Location loc = Location.builder()
+                .name("Instituto")
+                .number(3)
+                .locationCardList(cardList)
+                .build();
+        return loc;
     }
 
     private Location buildLocation2() {
@@ -51,8 +179,8 @@ public class LocationBuilder {
                 .action(Action.builder()
                         //TODO there is a condition to get the token (3 green tokens). Add logic to model this?
                         .subAction(TakeToken.builder()
-                                .tokenColor(BLACK)
-                                .tokenType(ONE)
+                                .squareTokenColor(BLACK)
+                                .squareTokenType(ONE)
                                 .build())
                         .build())
                 .build());
@@ -73,8 +201,8 @@ public class LocationBuilder {
                 .letter(D)
                 .action(Action.builder()
                         .subAction(TakeToken.builder()
-                                .tokenColor(BLUE)
-                                .tokenType(TWO)
+                                .squareTokenColor(BLUE)
+                                .squareTokenType(TWO)
                                 .actionCondition(ActionCondition.builder().itemRequired(23)
                                         .build())
                                 .build())
@@ -96,7 +224,7 @@ public class LocationBuilder {
                 .locationNumber(locNumber)
                 .letter(F)
                 .precondition(Precondition.builder()
-                        .tokenRequiredCondition(new TokenRequiredCondition(TokenColor.BLACK, TokenType.ONE))
+                        .tokenRequiredCondition(new TokenRequiredCondition(SquareTokenColor.BLACK, SquareTokenType.ONE))
                         .build())
                 .action(Action.builder()
                         .subAction(new Fight())
@@ -109,7 +237,7 @@ public class LocationBuilder {
                 .locationNumber(locNumber)
                 .letter(G)
                 .precondition(Precondition.builder()
-                        .tokenRequiredCondition(new TokenRequiredCondition(TokenColor.BLUE, TokenType.TWO))
+                        .tokenRequiredCondition(new TokenRequiredCondition(SquareTokenColor.BLUE, SquareTokenType.TWO))
                         .build())
                 .action(Action.builder()
                         .subAction(TakeItem.builder()
@@ -186,8 +314,8 @@ public class LocationBuilder {
                 .action(Action.builder()
                         .subAction(new Fight())
                         .subAction(TakeToken.builder()
-                                .tokenColor(YELLOW)
-                                .tokenType(TWO)
+                                .squareTokenColor(YELLOW)
+                                .squareTokenType(TWO)
                                 .build())
                         .build())
                 .build());
@@ -197,10 +325,11 @@ public class LocationBuilder {
                 .locationNumber(locNumber)
                 .letter(F)
                 .action(Action.builder()
-                        //TODO: model conditions when taking objects
-                        //we need Item number 3 here to get it
                         .subAction(TakeItem.builder()
                                 .itemNumber(5)
+                                .actionCondition(ActionCondition.builder()
+                                        .itemRequired(3)
+                                        .build())
                                 .build()) //Prisoner
                         .build())
                 .build());
